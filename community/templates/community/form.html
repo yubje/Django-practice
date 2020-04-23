@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-    <h1>글쓰기</h1>
+    <h1>New Post</h1>
     <form action="{% url 'community:create' %}" method='POST'>
         {% csrf_token %}
         {{ form.as_p }}

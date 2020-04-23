@@ -4,6 +4,7 @@
     <h1>Reviews</h1>
     {% for review in reviews %}
     <p>{{ review.pk }}</p>
-    <p>{{ review.title }}</p>
+    <h4>{{ review.title }}</h4>
+    <a href="{% url 'community:review_detail' review.pk %}">Details</a>
     {% endfor %}
 {% endblock %}

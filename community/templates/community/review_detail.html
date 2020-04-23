@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h2>{{ review.title }}</h2>
+    <h3>{{ review.movie_title }}</h3>
+    <p>created at: {{ review.created_at }}</p>
+    <p>updated at: {{ review.updated_at }}</p>
+    <hr>
+    <p>{{ review.content }}</p>
+
+    <a href="{% url 'community:review_list' %}">BACK</a>
+
+{% endblock %}
