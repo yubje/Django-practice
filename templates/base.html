@@ -17,7 +17,12 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="{% url 'community:review_list' %}">Home</a>
           <a class="nav-item nav-link" href="{% url 'community:create' %}">New</a>
-          <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">Signup</a>
+          {% if request.user.is_authenticated %}
+          <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+          {% else %}
+          <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">Sign up</a>
+          <a class="nav-item nav-link" href="{% url 'accounts:login' %}">Login</a>
+          {% endif %}
         </div>
       </div>
     </nav>
