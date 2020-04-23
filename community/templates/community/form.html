@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 {% block body %}
+    {% if request.resolver_match.url_name == 'create' %}
     <h1>New Post</h1>
     <form action="{% url 'community:create' %}" method='POST'>
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="submit">
     </form>
+    {% else %}
+    <h1>Edit</h1>
+    <form action="{% url 'community:update' review.pk %}" method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+    {% endif %}
 {% endblock %}
