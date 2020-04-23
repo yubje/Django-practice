@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Reviews</h1>
+    {% for review in reviews %}
+    <p>{{ review.pk }}</p>
+    <p>{{ review.title }}</p>
+    {% endfor %}
+{% endblock %}
