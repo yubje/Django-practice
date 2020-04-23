@@ -3,10 +3,28 @@
 {% block body %}
     <h2>{{ review.title }}</h2>
     <h3>{{ review.movie_title }}</h3>
+    <p>{{ review.user.username }}</p>
     <p>created at: {{ review.created_at }}</p>
     <p>updated at: {{ review.updated_at }}</p>
     <hr>
     <p>{{ review.content }}</p>
 
+    {% if review.user == request.user %}
+        <a href="{% url 'community:update' review.pk %}"><button>Edit</button></a>
+        <a href="{% url 'community:delete' review.pk %}"><button>Delete</button></a>
+    {% endif %}
 
+    <h3>Comments</h3>
+    <ol>
+    {% for comment in review.comment_set.all %}
+        <li>{{ comment.content }}</li>
+        <a href="{% url 'community:comments_delete' review.pk comment.pk %}">Delete</a>
+    {% endfor %}
+    </ol>
+
+    <form action="{% url 'community:comments_create' review.pk %}" method="POST">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" value="submit">
+    </form>
 {% endblock %}

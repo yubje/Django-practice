@@ -4,7 +4,7 @@ from .models import Review, Comment
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('user', 'title', 'movie_title', 'rank', 'content')
 
-class CommentAdmin(admin, ModelAdmin):
+class CommentAdmin(admin.ModelAdmin):
     list_diplay = ('user', 'content')
 
 admin.site.register(Review, ReviewAdmin)
