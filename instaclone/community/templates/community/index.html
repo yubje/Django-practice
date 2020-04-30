@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<p>Index</p>
+{% for article in articles %}
+    <a href="{% url 'community:detail' article.pk %}">{{ article.title }}</a>
+{% endfor %}
+
+{% endblock %}
