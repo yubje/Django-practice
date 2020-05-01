@@ -10,12 +10,10 @@
         {% if friend in request.user.followings.all %}
             <a href="{% url 'accounts:follow' friend.username %}" class="btn btn-secondary my-3">unfollow</a>
             <br>
-
         {% else %}
             <a href="{% url 'accounts:follow' friend.username %}" class="btn btn-primary my-3">follow</a>
             <br>
         {% endif %}
     {% endif %}
 {% endfor %}
-
 {% endblock %}

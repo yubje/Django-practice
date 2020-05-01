@@ -19,20 +19,15 @@
 <p>Total Likes | {{ user.like_articles.all|length }}</p>
 
 
-
 <!--Followers Followings-->
 <!--if the profile page is someone else's -->
 {% if user != request.user %}
     <!--if the user is already following the person-->
     {% if request.user in user.followers.all %}
-        <a href="{% url 'accounts:follow' user.username %}" class="btn btn-secondary">
-            unfollow
-        </a>
+        <a href="{% url 'accounts:follow' user.username %}" class="btn btn-secondary">unfollow</a>
     <!--if the user is not following the person-->
     {% else %}
-        <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">
-            follow
-        </a>
+        <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">follow</a>
     {% endif %}
 {% endif %}
 
