@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<p>Index</p>
+<h2>Index</h2>
 {% for article in articles %}
-    <a href="{% url 'community:detail' article.pk %}">{{ article.title }}</a>
+    <a href="{% url 'community:detail' article.pk %}">{{ article.title }}</a><br>
 {% endfor %}
 
 {% endblock %}

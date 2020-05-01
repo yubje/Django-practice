@@ -8,6 +8,10 @@
 	<p>내용: {{ article.content }}</p>
 	<p>생성 시각: {{ article.created_at }}</p>
 	<p>수정 시각: {{ article.updated_at }}</p>
+    {% if request.user == article.user %}
+        <a href="{% url 'community:update' article.pk %}"><button>Edit</button></a>
+        <a href="{% url 'community:delete' article.pk %}"><button>Delete</button></a>
+    {% endif %}
 
 	<form action="{% url 'community:comments_create' article.pk %}" method="POST">
         {% csrf_token %}
