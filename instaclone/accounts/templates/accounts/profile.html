@@ -5,7 +5,9 @@
 
 
 <!--all posts and all likes-->
-<h3>All Posts | {{ user.article_set.all|length }} posts</h3>
+<p>All Posts | {{ user.article_set.all|length }} posts</p>
+<a href="{% url 'accounts:follow_list' user.username %}?list=followers">followers {{ user.followers.all.count }}</a>
+<a href="{% url 'accounts:follow_list' user.username %}?list=followings">followings {{ user.followings.all.count }}</a>
 {% for article in user.article_set.all %}
   <a href="{% url 'community:detail' article.pk %}">{{ article.title }}</a>
 {% endfor %}

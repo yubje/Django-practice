@@ -63,3 +63,17 @@ def follow(request, username):
         else:
             user.followers.add(request.user)
     return redirect('accounts:profile', user.username)
+
+def follow_list(request, username):
+    User = get_user_model()
+    user = get_object_or_404(User, username=username)
+    # GET method
+    if request.GET.get('list') == 'followers':
+        f_list = user.followers.all()
+    elif request.GET.get('list') == 'followings':
+        f_list = user.followings.all()
+    context = {
+        'user':user,
+        'f_list':f_list,
+    }
+    return render(request, 'accounts/follow_list.html', context)
