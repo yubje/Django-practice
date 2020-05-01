@@ -10,6 +10,8 @@
 <br>
 <a href="{% url 'accounts:follow_list' user.username %}?list=followings">followings {{ user.followings.all.count }}</a>
 <hr>
+
+<h3>Posts</h3>
 {% for article in user.article_set.all %}
   <a href="{% url 'community:detail' article.pk %}">{{ article.title }}</a>
   <br>
