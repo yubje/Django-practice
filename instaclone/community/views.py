@@ -90,3 +90,13 @@ def comments_delete(request, article_pk, comment_pk):
         return redirect('community:detail', article.pk)
     else:
         return redirect('accounts:login')
+
+@login_required
+def like(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    user = request.user
+    if article.like_users.filter(id=user.pk).exists():
+        article.like_users.remove(user)
+    else:
+        article.like_users.add(user)
+    return redirect('community:index')
