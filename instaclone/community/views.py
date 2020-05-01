@@ -99,4 +99,4 @@ def like(request, article_pk):
         article.like_users.remove(user)
     else:
         article.like_users.add(user)
-    return redirect('community:index')
+    return redirect('community:detail', article.pk)

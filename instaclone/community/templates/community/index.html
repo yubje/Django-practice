@@ -5,7 +5,7 @@
 {% for article in articles %}
     <p>{{ article.user }}의 글</p>
     <a href="{% url 'community:detail' article.pk %}">
-        제목: {{ article.title }}
+        Title: {{ article.title }}
     </a><br>
 
     <!--likes : heart button-->

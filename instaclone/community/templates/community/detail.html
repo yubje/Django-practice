@@ -3,21 +3,41 @@
 {% block body %}
 	<h2>DETAIL</h2>
 	<hr>
-	<h3>{{ article.pk }}번글</h3>
-	<p>제목: {{ article.title }}</p>
-	<p>내용: {{ article.content }}</p>
-	<p>생성 시각: {{ article.created_at }}</p>
-	<p>수정 시각: {{ article.updated_at }}</p>
+	<p>Title: {{ article.title }}</p>
+	<p>Content: {{ article.content }}</p>
+	<p>Created at: {{ article.created_at }}</p>
+	<p>Updated at: {{ article.updated_at }}</p>
     {% if request.user == article.user %}
         <a href="{% url 'community:update' article.pk %}"><button>Edit</button></a>
-        <a href="{% url 'community:delete' article.pk %}"><button>Delete</button></a>
+        <a href="{% url 'community:delete' article.pk %}"><button>Delete</button></a><br>
     {% endif %}
 
+    <!--likes : heart button-->
+    {% if request.user in article.like_users.all %}
+      <a href="{% url 'community:like' article.pk %}">
+        <i class="fas fa-heart text-danger"></i>
+      </a>
+    {% else %}
+      <a href="{% url 'community:like' article.pk %}">
+        <i class="far fa-heart text-danger"></i>
+      </a>
+    {% endif %}
+
+    <!--number of people who liked the post-->
+    {% if article.like_users.all|length > 1 %}
+        <p>{{ article.like_users.all|length }} likes</p>
+    {% else %}
+        <p>{{ article.like_users.all|length }} like</p>
+    {% endif %}
+
+    <!--new comment-->
 	<form action="{% url 'community:comments_create' article.pk %}" method="POST">
         {% csrf_token %}
         <p>comment:<br>{{ comment_form.content }}</p>
         <input type="submit" value="write">
     </form>
+
+    <!--comment list-->
     {% for comment in article.comment_set.all %}
         <p>{{ comment.content }}</p>
         <form action="{% url 'community:comments_delete' article.pk comment.pk %}" method="POST">
@@ -25,4 +45,5 @@
         	<button>delete</button>
         </form>
     {% endfor %}
+
 {% endblock %}
