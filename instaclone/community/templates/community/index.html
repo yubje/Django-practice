@@ -22,9 +22,9 @@
 
     <!--number of people who liked the post-->
     {% if article.like_users.all|length > 1 %}
-        <p>{{ article.like_users.all|length }} likes</p>
+        <a href="{% url 'community:like_list' article.pk %}">{{ article.like_users.all|length }} likes</a>
     {% else %}
-        <p>{{ article.like_users.all|length }} like</p>
+        <a href="{% url 'community:like_list' article.pk %}">{{ article.like_users.all|length }} like</a>
     {% endif %}
     <hr>
 

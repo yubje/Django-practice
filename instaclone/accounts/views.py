@@ -70,8 +70,10 @@ def follow_list(request, username):
     # GET method
     if request.GET.get('list') == 'followers':
         f_list = user.followers.all()
+        follow_name = 'followers'
     elif request.GET.get('list') == 'followings':
         f_list = user.followings.all()
+        follow_name = 'followings'
     context = {
         'user':user,
         'f_list':f_list,

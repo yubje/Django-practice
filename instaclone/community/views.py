@@ -98,3 +98,13 @@ def like(request, article_pk):
     else:
         article.like_users.add(user)
     return redirect('community:detail', article.pk)
+
+def like_list(request, article_pk):
+
+    article = get_object_or_404(Article, pk=article_pk)
+    l_list = article.like_users.all()
+    context = {
+        'article':article,
+        'l_list':l_list,
+    }
+    return render(request, 'community/like_list.html', context)
