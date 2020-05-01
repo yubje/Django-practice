@@ -40,3 +40,26 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('community:index')
+
+@login_required
+def profile(request, username):
+    User = get_user_model()
+    user = get_object_or_404(User, username=username)
+    context = {
+        'user':user
+    }
+    return render(request, 'accounts/profile.html', context)
+
+def follow(request, username):
+    # bringing the data
+    User = get_user_model()
+    # the person getting followed
+    user = get_object_or_404(User, username=username)
+    # the owner of the profile => user
+    # the person asking to follow => request.user
+    if user != request.user:
+        if user.followers.filter(username=request.user.username).exists():
+            user.followers.remove(request.user)
+        else:
+            user.followers.add(request.user)
+    return redirect('accounts:profile', user.username)

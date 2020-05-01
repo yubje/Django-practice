@@ -3,20 +3,21 @@
 
 <h2>Index</h2>
 {% for article in articles %}
-    <p>{{ article.user }}의 글</p>
+    <p><a href="{% url 'accounts:profile' article.user %}">{{ article.user }}</a>'s Post</p>
     <a href="{% url 'community:detail' article.pk %}">
         Title: {{ article.title }}
     </a><br>
 
+
     <!--likes : heart button-->
     {% if request.user in article.like_users.all %}
-      <a href="{% url 'community:like' article.pk %}">
-        <i class="fas fa-heart text-danger"></i>
-      </a>
+        <a href="{% url 'community:like' article.pk %}">
+            <i class="fas fa-heart text-danger"></i>
+        </a>
     {% else %}
-      <a href="{% url 'community:like' article.pk %}">
-        <i class="far fa-heart text-danger"></i>
-      </a>
+        <a href="{% url 'community:like' article.pk %}">
+            <i class="far fa-heart text-danger"></i>
+        </a>
     {% endif %}
 
     <!--number of people who liked the post-->
@@ -26,6 +27,7 @@
         <p>{{ article.like_users.all|length }} like</p>
     {% endif %}
     <hr>
+
 {% endfor %}
 
 {% endblock %}

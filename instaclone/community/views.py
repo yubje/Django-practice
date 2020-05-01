@@ -5,13 +5,11 @@ from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
 
 
-# Create your views here.
 def index(request):
     articles = Article.objects.order_by('-pk')
     context = {
         'articles': articles,
     }
-
     return render(request, 'community/index.html', context)
 
 @login_required

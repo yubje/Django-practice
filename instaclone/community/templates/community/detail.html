@@ -3,6 +3,7 @@
 {% block body %}
 	<h2>DETAIL</h2>
 	<hr>
+	<a href="{% url 'accounts:profile' article.user %}">{{ article.user }}</a>
 	<p>Title: {{ article.title }}</p>
 	<p>Content: {{ article.content }}</p>
 	<p>Created at: {{ article.created_at }}</p>
