@@ -6,7 +6,10 @@
     <p><a href="{% url 'accounts:profile' article.user %}">{{ article.user }}</a>'s Post</p>
     <a href="{% url 'community:detail' article.pk %}">
         Title: {{ article.title }}
-    </a><br>
+    </a>
+    <br>
+    <img src="{{ article.image_thumbnail.url }}">
+    <br>
 
     {% include 'community/_like.html' %}
 

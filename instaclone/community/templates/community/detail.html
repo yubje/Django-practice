@@ -8,6 +8,8 @@
 	<p>Content: {{ article.content }}</p>
 	<p>Created at: {{ article.created_at }}</p>
 	<p>Updated at: {{ article.updated_at }}</p>
+	<img src="{{ article.image_thumbnail.url }}">
+	<br>
     {% if request.user == article.user %}
         <a href="{% url 'community:update' article.pk %}"><button>Edit</button></a>
         <a href="{% url 'community:delete' article.pk %}"><button>Delete</button></a><br>
